@@ -7,7 +7,7 @@ interface profile {
   data: SkyblockMember;
 }
 
-const CHypixel = new Client(process.env.HYPIXEL_KEY as string);
+const CHypixel = new Client(process.env.HYPIXEL_KEY!);
 
 export async function getHypixelData(playerName: string): Promise<profile | undefined> {
   let selectedProfile: profile | undefined = undefined;
