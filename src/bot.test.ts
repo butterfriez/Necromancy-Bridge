@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test';
-import { getHypixelData } from './src/util/api';
-import Player from './src/util/player';
+import { getHypixelData } from './util/api';
+import Player from './util/player';
 
 test("getHypixelData helper function doesn't return null", async () => {
   const result = await getHypixelData('tgny');
