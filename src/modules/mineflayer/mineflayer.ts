@@ -12,7 +12,7 @@ const MClient = createBot({
   port: 25565,
 });
 
-async function connect() {
+function connect() {
   MClient.on('end', async () => {
     if (process.env.HYPIXEL_DISCONNECT) {
       const logChannel = DClient.channels.cache.get(
@@ -24,6 +24,14 @@ async function connect() {
     }
     connect();
   });
+
+  MClient.on('kicked', connect);
+  MClient.on('error', connect);
+
+  import('./commandGrabber');
+  import('./eventHandler');
 }
 
 connect();
+
+export default MClient;

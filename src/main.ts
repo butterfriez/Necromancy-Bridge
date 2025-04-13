@@ -1,3 +1,3 @@
-import 'src/discord/bot.ts';
-import 'src/mineflayer/mineflayer.ts';
-import 'src/express/server.ts';
+import './modules/discord/bot.ts';
+import './modules/mineflayer/mineflayer.ts';
+import './modules/express/server.ts';

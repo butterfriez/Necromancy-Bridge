@@ -9,22 +9,18 @@ interface profile {
 
 const CHypixel = new Client(process.env.HYPIXEL_KEY!);
 
-export async function getHypixelData(playerName: string): Promise<profile | undefined> {
-  let selectedProfile: profile | undefined = undefined;
+export async function getHypixelData(playerName: string): Promise<Map<string, SkyblockMember>> {
+  let playerProfiles: Map<string, SkyblockMember> = new Map();
 
   await CHypixel.getSkyblockMember(playerName)
     .then((profiles: Map<string, SkyblockMember> | RequestData) => {
       if (profiles instanceof Map) {
-        for (const [profileName, profileData] of profiles.entries()) {
-          if (profileData.selected) {
-            selectedProfile = { name: profileName, data: profileData };
-          }
-        }
+        playerProfiles = profiles;
       }
     })
     .catch((error) => {
       console.error(`Error fetching skyblock data for: ${playerName}, error: `, error);
     });
 
-  return selectedProfile;
+  return playerProfiles;
 }
